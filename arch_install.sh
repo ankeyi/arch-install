@@ -20,7 +20,7 @@ arch-chroot /mnt
 
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
@@ -38,7 +38,6 @@ echo "#!/bin/bash" > /home/open_source/enable.sh
 echo "nm-applet" >> /home/open_source/enable.sh
 echo "xcompmgr" >> /home/open_source/enable.sh
 chown open_source:open_source /home/open_source/enable.sh
-systemctl enable NetworkManager
 systemctl enable sddm
 pacman -S  grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
