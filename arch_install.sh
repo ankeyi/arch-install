@@ -41,3 +41,19 @@ chown open_source:open_source /home/open_source/enable.sh
 # settings > start up  enable script
 systemctl enable NetworkManager
 systemctl enable sddm
+bootctl --path=/efi install
+mkdir /efi/EFI/arch
+mv /boot/*.img  /efi/EFI/arch/
+mv /boot/vmlinuz* /efi/EFI/arch/
+echo "default arch" > /efi/loader/loader.conf
+echo "timeout 0" >> /efi/loader/loader.conf
+echo "console-mode max" >> /efi/loader/loader.conf
+echo "editor no" >>  /efi/loader/loader.conf
+echo "title   Arch install Lts" > /efi/loader/entries/arch.conf
+echo "linux   /EFI/arch/vmlinuz-linux-lts" >> /efi/loader/entries/arch.conf
+echo "initrd  /EFI/arch/amd-ucode.img" >> /efi/loader/entries/arch.conf
+echo "initrd  /EFI/arch/initramfs-linux-lts.img" >> /efi/loader/entries/arch.conf
+echo "options root=PARTUUID=272c95d4-a62a-804c-b654-1cfbc332a3d6 rw" >> /efi/loader/entries/arch.conf
+
+
+
