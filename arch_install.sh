@@ -10,13 +10,14 @@ mount /dev/nvme0n1p2 /mnt
 mkdir /mnt/efi
 swapon /dev/nvme0n1p3
 mount /dev/nvme0n1p1  /mnt/efi
-echo "Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-" > /etc/pacman.d/mirrorlist
+echo "Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 pacman -Syy
-pacstrap /mnt base linux-lts  linux-firmware  linux-lts-headers
+pacstrap /mnt base linux-lts  linux-firmware  linux-lts-headers vim 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
-echo "not break run"
+
+
+
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
@@ -37,7 +38,7 @@ echo "#!/bin/bash" > /home/open_source/enable.sh
 echo "nm-applet" >> /home/open_source/enable.sh
 echo "xcompmgr" >> /home/open_source/enable.sh
 chown open_source:open_source /home/open_source/enable.sh
-
+systemctl enable NetworkManager
 systemctl enable sddm
 pacman -S  grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
