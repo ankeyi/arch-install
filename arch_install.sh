@@ -31,7 +31,7 @@ passwd
 useradd -m open_source
 passwd open_source
 pacman -S amd-ucode
-pacman -S sudo plasma-desktop networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  w3m bash-completion
+pacman -S sudo plasma-desktop networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  w3m bash-completion  wqy-zenhei
 pacman -S xcompmgr git libxinerama libx11 libxft
 echo "open_source ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "#!/bin/bash" > /home/open_source/enable.sh
@@ -54,6 +54,7 @@ echo "linux   /EFI/arch/vmlinuz-linux-lts" >> /efi/loader/entries/arch.conf
 echo "initrd  /EFI/arch/amd-ucode.img" >> /efi/loader/entries/arch.conf
 echo "initrd  /EFI/arch/initramfs-linux-lts.img" >> /efi/loader/entries/arch.conf
 echo "options root=PARTUUID=272c95d4-a62a-804c-b654-1cfbc332a3d6 rw" >> /efi/loader/entries/arch.conf
+# vim   :r !blkid
 
 
 
