@@ -5,7 +5,7 @@ systemctl stop reflector
 timedatectl set-ntp true
 mkfs.ext4 /dev/nvme0n1p2
 mkswap /dev/nvme0n1p3
-mkfs.fat -F 32	/dev/nvme0n1p1
+mkfs.vfat -F 32	/dev/nvme0n1p1
 mount /dev/nvme0n1p2 /mnt
 mkdir /mnt/efi
 swapon /dev/nvme0n1p3
@@ -24,20 +24,20 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "love_open_source" > /etc/hostname
-echo "127.0.0.1" > /etc/hosts
+echo "os_arch" > /etc/hostname
+echo "127.0.0.1  localhost" > /etc/hosts
 echo "root password"
 passwd
-useradd -m open_source
-passwd open_source
+useradd -m kan
+passwd kan
 pacman -S amd-ucode
-pacman -S sudo plasma-desktop networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  w3m bash-completion  wqy-zenhei
+pacman -S sudo xfce4 networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  w3m bash-completion  wqy-zenhei
 pacman -S xcompmgr git libxinerama libx11 libxft
-echo "open_source ALL=(ALL:ALL) ALL" >> /etc/sudoers
-echo "#!/bin/bash" > /home/open_source/enable.sh
-echo "nm-applet" >> /home/open_source/enable.sh
-echo "xcompmgr" >> /home/open_source/enable.sh
-chown open_source:open_source /home/open_source/enable.sh
+echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "#!/bin/bash" > /home/kan/enable.sh
+echo "nm-applet" >> /home/kan/enable.sh
+echo "xcompmgr" >> /home/kan/enable.sh
+chown kan:kan /home/kan/enable.sh
 # settings > start up  enable script
 systemctl enable NetworkManager
 systemctl enable sddm
