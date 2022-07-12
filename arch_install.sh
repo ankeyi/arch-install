@@ -11,7 +11,7 @@ mkdir /mnt/efi
 swapon /dev/nvme0n1p3
 mount /dev/nvme0n1p1  /mnt/efi
 echo "Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-pacman -Syy
+pacman -Sy
 pacstrap /mnt base linux-lts  linux-firmware  linux-lts-headers vim 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
