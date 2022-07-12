@@ -31,13 +31,9 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo xfce4 networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  w3m bash-completion  wqy-zenhei
-pacman -S xcompmgr git libxinerama libx11 libxft
+pacman -S sudo xfce4 networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  links bash-completion  wqy-zenhei
+pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
-echo "#!/bin/bash" > /home/kan/enable.sh
-echo "nm-applet" >> /home/kan/enable.sh
-echo "xcompmgr" >> /home/kan/enable.sh
-chown kan:kan /home/kan/enable.sh
 # settings > start up  enable script
 systemctl enable NetworkManager
 systemctl enable sddm
