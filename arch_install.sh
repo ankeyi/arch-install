@@ -31,25 +31,30 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo xfce4 networkmanager networkmanager-pptp network-manager-applet  base-devel xorg sddm  links bash-completion  wqy-zenhei
+pacman -S sudo gnome networkmanager networkmanager-pptp network-manager-applet  base-devel xorg gdm  links bash-completion  wqy-zenhei
 pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # settings > start up  enable script
 systemctl enable NetworkManager
-systemctl enable sddm
-bootctl --path=/efi install
-mkdir /efi/EFI/arch
-mv /boot/*.img  /efi/EFI/arch/
-mv /boot/vmlinuz* /efi/EFI/arch/
-echo "default arch" > /efi/loader/loader.conf
-echo "timeout 0" >> /efi/loader/loader.conf
-echo "console-mode max" >> /efi/loader/loader.conf
-echo "editor no" >>  /efi/loader/loader.conf
-echo "title   Arch install Lts" > /efi/loader/entries/arch.conf
-echo "linux   /EFI/arch/vmlinuz-linux-lts" >> /efi/loader/entries/arch.conf
-echo "initrd  /EFI/arch/amd-ucode.img" >> /efi/loader/entries/arch.conf
-echo "initrd  /EFI/arch/initramfs-linux-lts.img" >> /efi/loader/entries/arch.conf
-echo "options root=PARTUUID=272c95d4-a62a-804c-b654-1cfbc332a3d6 rw" >> /efi/loader/entries/arch.conf
+systemctl enable gdm
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+
+# bootctl --path=/efi install
+# mkdir /efi/EFI/arch
+# mv /boot/*.img  /efi/EFI/arch/
+# mv /boot/vmlinuz* /efi/EFI/arch/
+# echo "default arch" > /efi/loader/loader.conf
+# echo "timeout 0" >> /efi/loader/loader.conf
+# echo "console-mode max" >> /efi/loader/loader.conf
+# echo "editor no" >>  /efi/loader/loader.conf
+# echo "title   Arch install Lts" > /efi/loader/entries/arch.conf
+# echo "linux   /EFI/arch/vmlinuz-linux-lts" >> /efi/loader/entries/arch.conf
+# echo "initrd  /EFI/arch/amd-ucode.img" >> /efi/loader/entries/arch.conf
+# echo "initrd  /EFI/arch/initramfs-linux-lts.img" >> /efi/loader/entries/arch.conf
+# echo "options root=PARTUUID=272c95d4-a62a-804c-b654-1cfbc332a3d6 rw" >> /efi/loader/entries/arch.conf
 # vim   :r !blkid
 
 
