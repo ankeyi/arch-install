@@ -31,7 +31,7 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo gnome networkmanager networkmanager-pptp network-manager-applet  base-devel  wayland gdm  links bash-completion  wqy-zenhei
+pacman -S sudo xorg budgie-desktop networkmanager networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
 pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # settings > start up  enable script
