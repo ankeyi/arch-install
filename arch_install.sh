@@ -31,7 +31,7 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo xorg cutefish networkmanager networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
+pacman -S sudo xorg cutefish networkmanager fcitx5-im fcitx5-rime networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
 pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # settings > start up  enable script
@@ -41,6 +41,15 @@ pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
+echo "GTK_IM_MODULE=fcitx" >> /etc/environment
+
+echo "QT_IM_MODULE=fcitx" >> /etc/environment
+
+echo "XMODIFIERS=@im=fcitx" >> /etc/environment
+
+echo "SDL_IM_MODULE=fcitx" >> /etc/environment
+
+echo "GLFW_IM_MODULE=ibus" >> /etc/environment
 
 # bootctl --path=/efi install
 # mkdir /efi/EFI/arch
