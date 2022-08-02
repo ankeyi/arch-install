@@ -1,5 +1,7 @@
 #!/bin/bash
 # connect wifi	   use  iwctl
+# systemctl stop refle*
+# update source and install git
 # cdsisk /dev/nvme0n1  efi root swap
 systemctl stop reflector
 timedatectl set-ntp true
@@ -10,10 +12,10 @@ mount /dev/nvme0n1p2 /mnt
 mkdir /mnt/efi
 swapon /dev/nvme0n1p3
 mount /dev/nvme0n1p1  /mnt/efi
-echo "Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-pacman -Sy
+
 pacstrap /mnt base linux-lts  linux-firmware  linux-lts-headers vim 
 genfstab -U /mnt >> /mnt/etc/fstab
+
 arch-chroot /mnt
 
 
@@ -31,7 +33,7 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo xorg cutefish networkmanager fcitx5-im fcitx5-rime networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
+pacman -S sudo wayland gnome networkmanager fcitx5-im fcitx5-rime networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
 pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # settings > start up  enable script
