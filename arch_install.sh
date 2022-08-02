@@ -12,7 +12,7 @@ mount /dev/nvme0n1p2 /mnt
 mkdir /mnt/efi
 swapon /dev/nvme0n1p3
 mount /dev/nvme0n1p1  /mnt/efi
-
+pacman -Sy archlinux-keyring 
 pacstrap /mnt base linux-lts  linux-firmware  linux-lts-headers vim 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -33,7 +33,7 @@ passwd
 useradd -m kan
 passwd kan
 pacman -S amd-ucode
-pacman -S sudo wayland gnome networkmanager fcitx5-im fcitx5-rime networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
+pacman -S sudo archlinux-keyring  wayland gnome networkmanager fcitx5-im fcitx5-rime networkmanager-pptp network-manager-applet  base-devel   gdm  links bash-completion  wqy-zenhei
 pacman -S  git   
 echo "kan ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # settings > start up  enable script
